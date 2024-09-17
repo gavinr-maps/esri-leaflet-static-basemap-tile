@@ -2,7 +2,8 @@ import { TileLayer, setOptions } from 'leaflet';
 import { getStaticBasemapTilesUrl } from './Util';
 
 export var StaticBasemapTileLayer = TileLayer.extend({
-  initialize: (style, options) => {
+  options: {},
+  initialize: function (style, options) {
     if (options) {
       setOptions(this, options);
     }
@@ -22,23 +23,18 @@ export var StaticBasemapTileLayer = TileLayer.extend({
     // if no style passed in
     if (!style) {
       throw new Error(
-        'A value style URL is required for staticBasemapTileLayer (ex. arcgis/streets).'
+        'A valid style enum is required for staticBasemapTileLayer (ex. arcgis/streets).'
       );
     }
 
     // set key onto "this.options" for use elsewhere in the module.
     this.options.style = style;
-    this._url = getStaticBasemapTilesUrl(style, this.options.token, this.options);
-    console.log(this._url);
-  },
+    this.styleUrl = getStaticBasemapTilesUrl(style, this.options.token, this.options);
 
-  // Method of L.TileLayer
-  getTileUrl: () => {
-    console.log(this._url);
+    TileLayer.prototype.initialize.call(this, this.styleUrl, this.options);
   },
-
   // Method of L.Layer
-  getAttribution: () => {
+  getAttribution: function () {
     // TODO
   }
 
