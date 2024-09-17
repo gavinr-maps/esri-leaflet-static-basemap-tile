@@ -4,3 +4,4 @@ export { version as VERSION };
 
 export { StaticBasemapTileLayer, staticBasemapTileLayer } from './StaticBasemapTileLayer';
 export { getSelf } from './Util';
+

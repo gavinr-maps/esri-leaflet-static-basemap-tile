@@ -1,3 +1,5 @@
+This page is currently a work in progress.
+
 # Esri Leaflet Static Basemap Tile Plugin
 
 [![npm version][npm-img]][npm-url]
@@ -9,14 +11,9 @@
 > A plugin for Esri Leaflet to visualize static basemap tiles 
 from the static basemap tile service.
 
-
-# TODO
-
-the rest of this page is currently a WIP.
-
 ## Example
 
-Take a look at the [live demo](https://developers.arcgis.com/esri-leaflet/samples/showing-a-basemap/).
+Take a look at the [live demo](https://developers.arcgis.com/esri-leaflet/).
 
 ![Example Image](example.png)
 
@@ -25,17 +22,19 @@ Take a look at the [live demo](https://developers.arcgis.com/esri-leaflet/sample
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Esri Leaflet Vector Basemap</title>
+    <title>Esri Leaflet Static Basemap Tiles</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Load Leaflet from CDN -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-    <!-- Esri Leaflet and Esri Leaflet Vector -->
+    <!-- Load Esri Leaflet -->
     <script src="https://unpkg.com/esri-leaflet/dist/esri-leaflet.js"></script>
-    <script src="https://unpkg.com/esri-leaflet-vector@4/dist/esri-leaflet-vector.js"></script>
 
+    <!--  Load Esri Leaflet Static Basemap Tile -->
+    
+    
     <style>
       body {
         margin: 0;
@@ -58,8 +57,8 @@ Take a look at the [live demo](https://developers.arcgis.com/esri-leaflet/sample
     <script>
       var map = L.map("map").setView([40.706, -73.926], 14);
 
-      L.esri.Vector.vectorBasemapLayer("ArcGIS:Streets", {
-        apikey: "< YOUR VALID API KEY HERE >"
+      L.esri.Tile.staticBasemapTileLayer("arcgis/outdoor", {
+        token: "< YOUR ARCGIS ACCESS TOKEN HERE >"
       }).addTo(map);
     </script>
   </body>
@@ -69,82 +68,13 @@ Take a look at the [live demo](https://developers.arcgis.com/esri-leaflet/sample
 
 ## API Reference
 
-### [`L.esri.Vector.vectorBasemapLayer`](https://developers.arcgis.com/esri-leaflet/api-reference/layers/vector-basemap/)
+### `L.esri.Tile.staticBasemapTileLayer`
 
-For rendering basemap layers which use the Esri Basemap Styles API internally. Extends [L.Layer](https://leafletjs.com/reference#layer).
-
-
-```javascript
-// example using an Esri Basemap Styles API name
-L.esri.Vector.vectorBasemapLayer("ArcGIS:Streets", {
-  // provide either `apikey` or `token`
-  apikey: "...",
-  token: "..."
-}).addTo(map);
-```
-
-```javascript
-// example using an ITEM_ID
-L.esri.Vector.vectorBasemapLayer("ITEM_ID", {
-  // provide either `apikey` or `token`
-  apikey: "...",
-  token: "..."
-}).addTo(map);
-```
 
 #### Basemap Names
 
 Please see [the documentation](https://developers.arcgis.com/esri-leaflet/api-reference/layers/vector-basemap/#vector-basemaps) for a list of basemap names you can use (`ArcGIS:Streets`, `ArcGIS:DarkGray`, `ArcGIS:Imagery:Standard`, `OSM:Standard`, etc).
 
-### [`L.esri.Vector.vectorTileLayer`](https://developers.arcgis.com/esri-leaflet/api-reference/layers/vector-layer/)
-
-For custom vector tiles layers published from user data. Extends [L.Layer](https://leafletjs.com/reference#layer).
-
-:warning: This only supports services using the Web Mercator projection because it [relies directly upon `maplibre-gl-js`](#dependencies). Otherwise, the layer is not guaranteed to display properly. More information is available at [Maplibre custom coordinate system](https://roadmap.maplibre.org/c/91-custom-coordinate-system-epsg-non-mercator-projection).
-
-```javascript
-// example using an ITEM_ID
-L.esri.Vector.vectorTileLayer("ITEM_ID", {
-  // optional: provide either `apikey` or `token` if not public
-  apikey: "...",
-  token: "...",
-
-  // optional: if your layer is not hosted on ArcGIS Online,
-  // change `portalUrl` to the ArcGIS Enterprise base url
-  // (this is necessary when specifying an ITEM_ID)
-  portalUrl: "https://www.arcgis.com", // default value
-  
-  // optional: customize the style with a function that gets the default style from the service
-  // and returns the new style to be used
-  style: (style) => {
-    return newStyle;
-  }
-}).addTo(map);
-```
-
-```javascript
-// example using a VectorTileServer SERVICE_URL
-L.esri.Vector.vectorTileLayer("SERVICE_URL", {
-  // optional: provide either `apikey` or `token` if not public
-  apikey: "...",
-  token: "...",
-
-  // optional: if your layer is not hosted on ArcGIS Online,
-  // change `portalUrl` to the ArcGIS Enterprise base url
-  // (this may not be necessary when specifying a SERVICE_URL)
-  portalUrl: "https://www.arcgis.com", // default value
-  
-  // optional: set by default to `false` for performance reasons
-  // set to `true` to resolve WebGL printing issues in Firefox
-  preserveDrawingBuffer: false, // default value
-  
-  // optional: customize the style with a function that gets the default style from the service
-  // and returns the new style to be used
-  style: (style) => {
-    return newStyle;
-  }
-}).addTo(map);
-```
 
 ## Development Instructions
 
@@ -171,7 +101,6 @@ L.esri.Vector.vectorTileLayer("SERVICE_URL", {
 
 - Leaflet version [1.5.0](https://github.com/Leaflet/Leaflet/releases/tag/v1.5.0) (or higher) is required.
 - Esri Leaflet [2.3.0](https://github.com/Esri/esri-leaflet/releases/tag/v2.3.0) (or higher) is required.
-- [maplibre-gl-js](https://github.com/maplibre/maplibre-gl-js/)
 
 ## Resources
 

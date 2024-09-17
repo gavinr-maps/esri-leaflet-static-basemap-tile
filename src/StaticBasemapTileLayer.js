@@ -1,8 +1,8 @@
 import { TileLayer, setOptions } from 'leaflet';
-import { getStaticBasemapTilesUrl } from './Util';
+import { getStaticBasemapTilesUrl, fetchAttribution } from './Util';
+import { Util } from 'esri-leaflet';
 
 export var StaticBasemapTileLayer = TileLayer.extend({
-  options: {},
   initialize: function (style, options) {
     if (options) {
       setOptions(this, options);
@@ -27,17 +27,25 @@ export var StaticBasemapTileLayer = TileLayer.extend({
       );
     }
 
-    // set key onto "this.options" for use elsewhere in the module.
+    // Add an initial '/' if not included in style string
+    if (style[0] !== '/') style = '/' + style;
+
+    // Save style into "this.options" for use elsewhere in the module.
     this.options.style = style;
-    this.styleUrl = getStaticBasemapTilesUrl(style, this.options.token, this.options);
+    this.serviceUrl = getStaticBasemapTilesUrl(style, this.options.token, this.options);
 
-    TileLayer.prototype.initialize.call(this, this.styleUrl, this.options);
+    TileLayer.prototype.initialize.call(this, this.serviceUrl, this.options);
   },
-  // Method of L.Layer
+  // Override method of L.Layer
   getAttribution: function () {
-    // TODO
+    Util.setEsriAttribution(this._map);
+    console.log('TOKEN', this.options.token);
+    return new Promise((resolve, reject) => {
+      fetchAttribution(this.options.style, this.options.token).then((resp) => {
+        resolve(resp.copyrightText);
+      });
+    });
   }
-
 });
 
 export function staticBasemapTileLayer (key, options) {
