@@ -1,7 +1,7 @@
 {
   "name": "esri-leaflet-static-basemap-tile",
   "description": "Esri's static basemap tile layer plugin for Leaflet.",
-  "version": "1",
+  "version": "1.0.0",
   "author": "George Owen (https://www.linkedin.com/in/geoowen/)",
   "contributors": [
     "Patrick Arlt <parlt@esri.com> (http://patrickarlt.com)",
