@@ -16,6 +16,7 @@ export function getStaticBasemapTilesUrl (style, accessToken, options) {
 
   let url = baseUrl + style + '/static/tile/{z}/{y}/{x}?token=' + accessToken;
 
+  // Handle additional service parameters
   if (options.language) {
     url += '&language=' + options.language;
   }
@@ -30,11 +31,10 @@ export function getStaticBasemapTilesUrl (style, accessToken, options) {
  * @returns The attribution data from the '/static' endpoint of a style enumeration
  */
 export async function fetchAttribution (style, accessToken) {
-  const attributionUrl = baseUrl + style + '/static?token=' + accessToken;
+  const attributionUrl = baseUrl + style + '/static';
   return new Promise((resolve, reject) => {
     request(attributionUrl, { token: accessToken }, (error, resp) => {
       if (error) reject(error);
-
       resolve(resp.copyrightText);
     });
   });

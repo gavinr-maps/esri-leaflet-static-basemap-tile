@@ -36,14 +36,22 @@ export var StaticBasemapTileLayer = TileLayer.extend({
 
     TileLayer.prototype.initialize.call(this, this.serviceUrl, this.options);
   },
-  // Override method of L.Layer
-  getAttribution: function () {
+  onAdd: function () {
+    // Mirrors code from L.GridLayer
+    this._initContainer();
+
+    this._levels = {};
+    this._tiles = {};
+
+    this._resetView(); // implicit _update() call
+    // Setup Esri attribution
+    this._setupAttribution();
+  },
+  _setupAttribution: function () {
+    if (!this._map) return;
     Util.setEsriAttribution(this._map);
-    console.log('TOKEN', this.options.token);
-    return new Promise((resolve, reject) => {
-      fetchAttribution(this.options.style, this.options.token).then((resp) => {
-        resolve(resp.copyrightText);
-      });
+    fetchAttribution(this.options.style, this.options.token).then(attribution => {
+      this._map.attributionControl.addAttribution(attribution);
     });
   }
 });
