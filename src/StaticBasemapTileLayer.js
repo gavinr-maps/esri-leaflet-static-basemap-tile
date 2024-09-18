@@ -19,11 +19,16 @@ export var StaticBasemapTileLayer = TileLayer.extend({
     } else if (this.options.token) {
       this.options.apikey = this.options.token;
     }
-
+    // if no access token provided
+    if (!this.options.token) {
+      throw new Error(
+        'An ArcGIS access token is required for static basemap tiles. To learn more, go to https://developers.arcgis.com/documentation/security-and-authentication/'
+      );
+    }
     // if no style passed in
     if (!style) {
       throw new Error(
-        'A valid style enum is required for staticBasemapTileLayer (ex. arcgis/streets).'
+        'A valid style code is required for staticBasemapTileLayer (ex. arcgis/streets).'
       );
     }
 
