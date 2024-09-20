@@ -3,4 +3,4 @@ const version = packageInfo.version;
 export { version as VERSION };
 
 export { StaticBasemapTileLayer, staticBasemapTileLayer } from './StaticBasemapTileLayer';
-export { getSelf } from './Util';
+export { EsriUtil as Util } from './Util';

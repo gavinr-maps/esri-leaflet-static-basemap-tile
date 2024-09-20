@@ -57,3 +57,9 @@ export async function getSelf (accessToken) {
     });
   });
 }
+
+export var EsriUtil = {
+  getSelf: getSelf
+};
+
+export default EsriUtil;
