@@ -14,6 +14,7 @@ const baseUrl = 'https://static-map-tiles-api.arcgis.com/arcgis/rest/services/st
 export function getStaticBasemapTilesUrl (style, accessToken, options) {
   if (!accessToken) throw new Error('An access token is required to access the static basemap tiles service.');
 
+  // Tile endpoint in {z}/{y}/{x} format
   let url = baseUrl + style + '/static/tile/{z}/{y}/{x}?token=' + accessToken;
 
   // Handle additional service parameters

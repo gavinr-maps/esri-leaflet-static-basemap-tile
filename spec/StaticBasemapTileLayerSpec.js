@@ -47,5 +47,21 @@ describe('StaticBasemapTileLayer', () => {
     it('should create static tiles in the \'tilePane\' by default', function () {
       const layer = L.esri.Tile.staticBasemapTileLayer(basemapStyle,{token:accessToken});
       expect(layer.options.pane).to.equal('tilePane');
-    })
+    });
+    it('should save the pane from the constructor', function () {
+      const layer = L.esri.Tile.staticBasemapTileLayer(basemapStyle,{token:accessToken,
+        pane:'test-pane'
+      });
+      expect(layer.options.pane).to.equal('test-pane');
+    });
+    it('should set the pane to \'esri-labels\' for styles ending in \'\/labels\'', function () {
+      const layer = L.esri.Tile.staticBasemapTileLayer('arcgis/imagery/labels',{token:accessToken});
+      expect(layer.options.pane).to.equal('esri-labels');
+    });
+    it('should override the \'esri-labels\' pane if a custom pane is provided for a style ending in \'\/labels\'', function () {
+      const layer = L.esri.Tile.staticBasemapTileLayer('arcgis/imagery/labels',{token:accessToken,
+        pane:'tilePane'
+      });
+      expect(layer.options.pane).to.equal('tilePane');
+    });
 })

@@ -11,9 +11,7 @@ export var StaticBasemapTileLayer = TileLayer.extend({
     if (this.options.apiKey) {
       this.options.apikey = this.options.apiKey;
     }
-
-    // if apiKey is passed in, propagate to token
-    // if token is passed in, propagate to apiKey
+    // propagate apikey to token and vice versa
     if (this.options.apikey) {
       this.options.token = this.options.apikey;
     } else if (this.options.token) {
@@ -25,13 +23,21 @@ export var StaticBasemapTileLayer = TileLayer.extend({
         'An ArcGIS access token is required for static basemap tiles. To learn more, go to https://developers.arcgis.com/documentation/security-and-authentication/'
       );
     }
-    // if no style passed in
+    // If no style passed in
     if (!style) {
       throw new Error(
         'A valid style code is required for staticBasemapTileLayer (ex. arcgis/streets).'
       );
     }
+    // Set layer pane
+    if (options.pane) {
+      this.options.pane = options.pane;
+    } else if (style.includes('/labels')) {
+      this.options.pane = 'esri-labels';
+    }
 
+    this.options.zoomOffset = -1;
+    this.options.tileSize = 512;
     // Add an initial '/' if not included in style string
     if (style[0] !== '/') style = '/' + style;
 
@@ -41,23 +47,39 @@ export var StaticBasemapTileLayer = TileLayer.extend({
 
     TileLayer.prototype.initialize.call(this, this.serviceUrl, this.options);
   },
-  onAdd: function () {
-    // Mirrors code from L.GridLayer
-    this._initContainer();
-
-    this._levels = {};
-    this._tiles = {};
-
-    this._resetView(); // implicit _update() call
+  onAdd: function (map) {
     // Setup Esri attribution
     this._setupAttribution();
+
+    this._initPane();
+
+    TileLayer.prototype.onAdd.call(this, map);
+  },
+  onRemove: function (map) {
+    this._removeAttribution();
+    TileLayer.prototype.onRemove.call(this, map);
   },
   _setupAttribution: function () {
     if (!this._map) return;
     Util.setEsriAttribution(this._map);
     fetchAttribution(this.options.style, this.options.token).then(attribution => {
+      // Add attribution directly to map
       this._map.attributionControl.addAttribution(attribution);
     });
+  },
+  _removeAttribution: function () {
+    if (Util.removeEsriAttribution) Util.removeEsriAttribution(this._map);
+  },
+  _initPane: function () {
+    if (this._map.getPane(this.options.pane)) return;
+
+    const pane = this._map.createPane(this.options.pane);
+    pane.style.pointerEvents = 'none';
+
+    // Default value for tileLayer
+    let zIndex = 200;
+    if (this.options.pane === 'esri-labels') zIndex = 300;
+    pane.style.zIndex = zIndex;
   }
 });
 
