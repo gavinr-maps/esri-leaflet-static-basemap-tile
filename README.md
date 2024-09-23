@@ -5,6 +5,8 @@
 > A plugin for Esri Leaflet to visualize static basemap tiles 
 from the static basemap tile service.
 
+The Esri Leaflet Static Basemap Tile package provides a class to load static basemap tiles from the [ArcGIS static basemap tile service](https://developers.arcgis.com/rest/basemap-styles/). Basemaps are rendered as image tiles that adhere to the [OpenAPI specification](https://static-map-tiles-api.arcgis.com/arcgis/rest/services/static-basemap-tiles-service/beta/specification/open-api-v3-0/).
+
 ## Example
 
 Check out the [live demo]().
