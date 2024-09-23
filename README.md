@@ -1,19 +1,13 @@
-This page is currently a work in progress.
-
 # Esri Leaflet Static Basemap Tile Plugin
 
-[![npm version][npm-img]][npm-url]
-[![apache licensed](https://img.shields.io/badge/license-Apache-green.svg?style=flat-square)](https://raw.githubusercontent.com/Esri/esri-leaflet-vector/master/LICENSE)
-
-[npm-img]: https://img.shields.io/npm/v/esri-leaflet-vector.svg?style=flat-square
-[npm-url]: https://www.npmjs.com/package/esri-leaflet-vector
+...
 
 > A plugin for Esri Leaflet to visualize static basemap tiles 
 from the static basemap tile service.
 
 ## Example
 
-Take a look at the [live demo](https://developers.arcgis.com/esri-leaflet/).
+Check out the [live demo]().
 
 ![Example Image](example.png)
 
@@ -33,7 +27,7 @@ Take a look at the [live demo](https://developers.arcgis.com/esri-leaflet/).
     <script src="https://unpkg.com/esri-leaflet/dist/esri-leaflet.js"></script>
 
     <!--  Load Esri Leaflet Static Basemap Tile -->
-    
+    <script src="https://unpkg.com/esri-leaflet-static-basemap-tile/dist/esri-leaflet-static-basemap-tile.js"></script>
     
     <style>
       body {
@@ -55,9 +49,9 @@ Take a look at the [live demo](https://developers.arcgis.com/esri-leaflet/).
     <div id="map"></div>
 
     <script>
-      var map = L.map("map").setView([40.706, -73.926], 14);
+      var map = L.map("map").setView([40.706, -73.926], 4);
 
-      L.esri.Tile.staticBasemapTileLayer("arcgis/outdoor", {
+      L.esri.Tile.staticBasemapTileLayer("/beta/arcgis/outdoor", {
         token: "< YOUR ARCGIS ACCESS TOKEN HERE >"
       }).addTo(map);
     </script>
@@ -68,20 +62,51 @@ Take a look at the [live demo](https://developers.arcgis.com/esri-leaflet/).
 
 ## API Reference
 
-### `L.esri.Tile.staticBasemapTileLayer`
+### [`L.esri.Tile.staticBasemapTileLayer`]()
 
+`L.esri.Tile.staticBasemapTileLayer(<String> style, <Object> options)`
 
-#### Basemap Names
+Displays a basemap layer using tiles from the ArcGIS [Static basemap tiles service](https://developers.arcgis.com/rest/static-basemap-tiles/) (currently in beta). Extends [L.TileLayer](https://leafletjs.com/reference.html#tilelayer).
 
-Please see [the documentation](https://developers.arcgis.com/esri-leaflet/api-reference/layers/vector-basemap/#vector-basemaps) for a list of basemap names you can use (`ArcGIS:Streets`, `ArcGIS:DarkGray`, `ArcGIS:Imagery:Standard`, `OSM:Standard`, etc).
+```js
+L.esri.Tile.staticBasemapTileLayer("/beta/arcgis/streets", {
+  token: "< YOUR ARCGIS ACCESS TOKEN HERE >"
+}).addTo(map);
+```
 
+```js
+L.esri.Tile.staticBasemapTileLayer("/beta/arcgis/newspaper", {
+  token: "< YOUR ARCGIS ACCESS TOKEN HERE >",
+  language: "fr"
+}).addTo(map);
+```
+
+* The `style` parameter must be a valid [basemap style code](#basemap-styles).
+
+* The `token` parameter must be a valid [ArcGIS access token](https://developers.arcgis.com/documentation/security-and-authentication/api-key-authentication/tutorials/create-an-api-key/).
+
+For a full list of parameters, go to the Esri Leaflet [API reference]().
+
+#### Basemap Styles
+
+`staticBasemapTileLayer` accepts a basemap style code as a string in the format `/beta/<provider>/<style>`. For example, `/beta/arcgis/outdoor` will load the [ArcGIS Outdoor](https://developers.arcgis.com/rest/static-basemap-tiles/arcgis-outdoor-tile-get/) basemap style.
+
+For a full list of supported basemap styles, go to the [static basemap tiles service documentation](https://developers.arcgis.com/rest/static-basemap-tiles/).
+
+### [`L.esri.Tile.Util.getSelf`]()
+
+`L.esri.Tile.Util.getSelf(<String> token)`
+
+Utility method that makes a request to the [`/self`](https://developers.arcgis.com/rest/static-basemap-tiles/service-self-get/) endpoint of the ArcGIS static basemap tiles service. Requires a valid [ArcGIS access token](https://developers.arcgis.com/documentation/security-and-authentication/api-key-authentication/tutorials/create-an-api-key/).
+
+This endpoint returns a list of all supported basemap styles and language parameters, which can be useful in creating maps that support multiple styles or languages.
 
 ## Development Instructions
 
 ### Quickstart Development Instructions
 
 1. [Fork and clone this repo](https://help.github.com/articles/fork-a-repo).
-2. `cd` into the `esri-leaflet-vector` folder.
+2. `cd` into the `esri-leaflet-static-basemap-tile` folder.
 3. Install the dependencies with `npm install`.
 4. Run `npm run dev` to compile the raw source inside a newly created `dist` folder and start up a development web server.
    - Alternatively, run `npm run start` to compile raw source code into both "debug" and "production" versions. This process will take longer to compile when saving your local changes to source code. Recommended only when building for production.
@@ -90,7 +115,7 @@ Please see [the documentation](https://developers.arcgis.com/esri-leaflet/api-re
 ### Advanced Development Instructions
 
 1. [Fork and clone this repo](https://help.github.com/articles/fork-a-repo).
-2. `cd` into the `esri-leaflet-vector` folder.
+2. `cd` into the `esri-leaflet-static-basemap-tile` folder.
 3. Install the dependencies with `npm install`.
 4. Run `npm run build` to compile the raw source inside a newly created `dist` folder.
 5. Run `npm test` from the command line to execute tests.
@@ -110,9 +135,9 @@ Please see [the documentation](https://developers.arcgis.com/esri-leaflet/api-re
 
 ## Issues
 
-Find a bug or want to request a new feature? Please let us know by submitting an [issue](https://github.com/Esri/esri-leaflet-vector/issues).
+Find a bug or want to request a new feature? Please let us know by submitting an [issue](https://github.com/Esri/esri-leaflet-static-basemap-tile/issues).
 
-Please take a look at previous issues on [Esri Leaflet](https://github.com/Esri/esri-leaflet-vector/issues?labels=FAQ&milestone=&page=1&state=closed) and Esri Leaflet [Vector](https://github.com/Esri/esri-leaflet-vector/issues) that resolve common problems.
+Please take a look at previous issues on [Esri Leaflet](https://github.com/Esri/esri-leaflet/issues?labels=FAQ&milestone=&page=1&state=closed) and Esri Leaflet [Static Basemap Tile](https://github.com/Esri/esri-leaflet-static-basemap-tile/issues) that resolve common problems.
 
 You can also post issues on the [GIS Stack Exchange](http://gis.stackexchange.com/questions/ask?tags=esri-leaflet,leaflet) an/or the [Esri Leaflet place](https://geonet.esri.com/discussion/create.jspa?sr=pmenu&containerID=1841&containerType=700&tags=esri-leaflet,leaflet) on GeoNet.
 
