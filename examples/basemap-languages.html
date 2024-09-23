@@ -12,7 +12,7 @@ https://developers.arcgis.com/documentation/security-and-authentication/get-star
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
-    <title>Esri Leaflet: Styles for static basemap tiles</title>
+    <title>Esri Leaflet: Language support with static basemap tiles</title>
 
     <!-- Load Leaflet from local node_modules -->
     <link rel="stylesheet" href="../node_modules/leaflet/dist/leaflet.css" />
@@ -47,22 +47,23 @@ https://developers.arcgis.com/documentation/security-and-authentication/get-star
     <script>
       const map = L.map("map", {
         minZoom: 2
-      }).setView([14.42, -76.85], 4);
+      }).setView([49.61, 16.83], 4);
 
       // Your ArcGIS access token (From API key auth, user auth, or app auth)
       const accessToken = "YOUR_ACCESS_TOKEN";
+      const basemapStyle = '/beta/arcgis/navigation';
 
-      L.esri.Tile.Util.getSelf(accessToken).then((data) => {
-        // Create style control   
+      L.esri.Tile.Util.getSelf(accessToken).then((data) => {      
+        // Create language control
         const basemapLayers = {};
-        data.styles.forEach(style=>{
-            basemapLayers[style.name] = L.esri.Tile.staticBasemapTileLayer('/beta'+style.path,{token:accessToken})
+        data.languages.forEach(language=>{
+            basemapLayers[language.name] = L.esri.Tile.staticBasemapTileLayer(basemapStyle,{token:accessToken, language:language.code})
         })
         L.control.layers(basemapLayers, null, { collapsed: false }).addTo(map);
-
-        // Set default basemap style
-        basemapLayers['ArcGIS Outdoor'].addTo(map);
-      })
+        
+        // Set default language
+        basemapLayers['French'].addTo(map);
+    })
     </script>
   </body>
 </html>

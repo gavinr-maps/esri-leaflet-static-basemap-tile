@@ -49,7 +49,7 @@ export async function fetchAttribution (style, accessToken) {
 export async function getSelf (accessToken) {
   if (!accessToken) throw new Error('An access token is required to access the static basemap tiles service.');
 
-  const selfUrl = baseUrl + '/self';
+  const selfUrl = baseUrl + '/beta/self';
   return new Promise((resolve, reject) => {
     request(selfUrl, { token: accessToken }, (error, resp) => {
       if (error) reject(error);
