@@ -1,7 +1,7 @@
 import { request } from 'esri-leaflet';
 
 // URL of the static basemap tiles service (currently in Beta)
-const baseUrl = 'https://static-map-tiles-api.arcgis.com/arcgis/rest/services/static-basemap-tiles-service/beta';
+const baseUrl = 'https://static-map-tiles-api.arcgis.com/arcgis/rest/services/static-basemap-tiles-service';
 
 /**
  * Utility to establish a URL for the static basemap tiles API

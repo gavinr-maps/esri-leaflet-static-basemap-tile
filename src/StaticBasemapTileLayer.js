@@ -26,9 +26,16 @@ export var StaticBasemapTileLayer = TileLayer.extend({
     // If no style passed in
     if (!style) {
       throw new Error(
-        'A valid style code is required for staticBasemapTileLayer (ex. arcgis/streets).'
+        'A valid style enum is required for staticBasemapTileLayer (e.g. \'/beta/arcgis/streets\').'
       );
     }
+    if (!style.includes('beta')) {
+      throw new Error(
+        'The basemap styles service is currently in beta. All style enums must begin with \'/beta\' (e.g. \'/beta/arcgis/outdoor\').'
+      );
+    }
+    // Add an initial '/' if not included in style string
+    if (style[0] !== '/') style = '/' + style;
     // Set layer pane
     if (options.pane) {
       this.options.pane = options.pane;
@@ -38,8 +45,6 @@ export var StaticBasemapTileLayer = TileLayer.extend({
 
     this.options.zoomOffset = -1;
     this.options.tileSize = 512;
-    // Add an initial '/' if not included in style string
-    if (style[0] !== '/') style = '/' + style;
 
     // Save style into "this.options" for use elsewhere in the module.
     this.options.style = style;
