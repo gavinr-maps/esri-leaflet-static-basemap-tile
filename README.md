@@ -53,7 +53,7 @@ Check out the [live demo]().
     <script>
       var map = L.map("map").setView([40.706, -73.926], 4);
 
-      L.esri.Tile.staticBasemapTileLayer("/beta/arcgis/outdoor", {
+      L.esri.Static.staticBasemapTileLayer("/beta/arcgis/outdoor", {
         token: "< YOUR ARCGIS ACCESS TOKEN HERE >"
       }).addTo(map);
     </script>
@@ -64,20 +64,20 @@ Check out the [live demo]().
 
 ## API Reference
 
-### [`L.esri.Tile.staticBasemapTileLayer`]()
+### [`L.esri.Static.staticBasemapTileLayer`]()
 
-`L.esri.Tile.staticBasemapTileLayer(<String> style, <Object> options)`
+`L.esri.Static.staticBasemapTileLayer(<String> style, <Object> options)`
 
 Displays a basemap layer using tiles from the ArcGIS [Static basemap tiles service](https://developers.arcgis.com/rest/static-basemap-tiles/) (currently in beta). Extends [L.TileLayer](https://leafletjs.com/reference.html#tilelayer).
 
 ```js
-L.esri.Tile.staticBasemapTileLayer("/beta/arcgis/streets", {
+L.esri.Static.staticBasemapTileLayer("/beta/arcgis/streets", {
   token: "< YOUR ARCGIS ACCESS TOKEN HERE >"
 }).addTo(map);
 ```
 
 ```js
-L.esri.Tile.staticBasemapTileLayer("/beta/arcgis/newspaper", {
+L.esri.Static.staticBasemapTileLayer("/beta/arcgis/newspaper", {
   token: "< YOUR ARCGIS ACCESS TOKEN HERE >",
   language: "fr"
 }).addTo(map);
@@ -95,9 +95,9 @@ For a full list of parameters, go to the Esri Leaflet [API reference]().
 
 For a full list of supported basemap styles, go to the [static basemap tiles service documentation](https://developers.arcgis.com/rest/static-basemap-tiles/).
 
-### [`L.esri.Tile.Util.getSelf`]()
+### [`L.esri.Static.Util.getSelf`]()
 
-`L.esri.Tile.Util.getSelf(<String> token)`
+`L.esri.Static.Util.getSelf(<String> token)`
 
 Utility method that makes a request to the [`/self`](https://developers.arcgis.com/rest/static-basemap-tiles/service-self-get/) endpoint of the ArcGIS static basemap tiles service. Requires a valid [ArcGIS access token](https://developers.arcgis.com/documentation/security-and-authentication/api-key-authentication/tutorials/create-an-api-key/).
 

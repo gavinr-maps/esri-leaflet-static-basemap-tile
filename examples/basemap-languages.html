@@ -53,11 +53,11 @@ https://developers.arcgis.com/documentation/security-and-authentication/get-star
       const accessToken = "YOUR_ACCESS_TOKEN";
       const basemapStyle = '/beta/arcgis/navigation';
 
-      L.esri.Tile.Util.getSelf(accessToken).then((data) => {      
+      L.esri.Static.Util.getSelf(accessToken).then((data) => {      
         // Create language control
         const basemapLayers = {};
         data.languages.forEach(language=>{
-            basemapLayers[language.name] = L.esri.Tile.staticBasemapTileLayer(basemapStyle,{token:accessToken, language:language.code})
+            basemapLayers[language.name] = L.esri.Static.staticBasemapTileLayer(basemapStyle,{token:accessToken, language:language.code})
         })
         L.control.layers(basemapLayers, null, { collapsed: false }).addTo(map);
         
