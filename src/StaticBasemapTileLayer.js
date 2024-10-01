@@ -26,16 +26,14 @@ export var StaticBasemapTileLayer = TileLayer.extend({
     // If no style passed in
     if (!style) {
       throw new Error(
-        'A valid style enum is required for staticBasemapTileLayer (e.g. \'/beta/arcgis/streets\').'
+        'A valid style enum is required for staticBasemapTileLayer (e.g. \'beta/arcgis/streets\').'
       );
     }
     if (!style.includes('beta')) {
       throw new Error(
-        'The basemap styles service is currently in beta. All style enums must begin with \'/beta\' (e.g. \'/beta/arcgis/outdoor\').'
+        'The basemap styles service is currently in beta. All style enums must begin with \'beta\' (e.g. \'beta/arcgis/outdoor\').'
       );
     }
-    // Add an initial '/' if not included in style string
-    if (style[0] !== '/') style = '/' + style;
     // Set layer pane
     if (options.pane) {
       this.options.pane = options.pane;

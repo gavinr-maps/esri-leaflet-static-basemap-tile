@@ -56,7 +56,7 @@ https://developers.arcgis.com/documentation/security-and-authentication/get-star
         // Create style control   
         const basemapLayers = {};
         data.styles.forEach(style=>{
-            basemapLayers[style.name] = L.esri.Static.staticBasemapTileLayer('/beta'+style.path,{token:accessToken})
+            basemapLayers[style.name] = L.esri.Static.staticBasemapTileLayer('beta'+style.path,{token:accessToken})
         })
         L.control.layers(basemapLayers, null, { collapsed: false }).addTo(map);
 

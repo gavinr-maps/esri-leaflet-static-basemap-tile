@@ -53,7 +53,7 @@ Check out the [live demo]().
     <script>
       var map = L.map("map").setView([40.706, -73.926], 4);
 
-      L.esri.Static.staticBasemapTileLayer("/beta/arcgis/outdoor", {
+      L.esri.Static.staticBasemapTileLayer("beta/arcgis/outdoor", {
         token: "< YOUR ARCGIS ACCESS TOKEN HERE >"
       }).addTo(map);
     </script>
@@ -71,13 +71,13 @@ Check out the [live demo]().
 Displays a basemap layer using tiles from the ArcGIS [Static basemap tiles service](https://developers.arcgis.com/rest/static-basemap-tiles/) (currently in beta). Extends [L.TileLayer](https://leafletjs.com/reference.html#tilelayer).
 
 ```js
-L.esri.Static.staticBasemapTileLayer("/beta/arcgis/streets", {
+L.esri.Static.staticBasemapTileLayer("beta/arcgis/streets", {
   token: "< YOUR ARCGIS ACCESS TOKEN HERE >"
 }).addTo(map);
 ```
 
 ```js
-L.esri.Static.staticBasemapTileLayer("/beta/arcgis/newspaper", {
+L.esri.Static.staticBasemapTileLayer("beta/arcgis/newspaper", {
   token: "< YOUR ARCGIS ACCESS TOKEN HERE >",
   language: "fr"
 }).addTo(map);
@@ -91,7 +91,7 @@ For a full list of parameters, go to the Esri Leaflet [API reference]().
 
 #### Basemap Styles
 
-`staticBasemapTileLayer` accepts a basemap style code as a string in the format `/beta/<provider>/<style>`. For example, `/beta/arcgis/outdoor` will load the [ArcGIS Outdoor](https://developers.arcgis.com/rest/static-basemap-tiles/arcgis-outdoor-tile-get/) basemap style.
+`staticBasemapTileLayer` accepts a basemap style code as a string in the format `beta/<provider>/<style>`. For example, `beta/arcgis/outdoor` will load the [ArcGIS Outdoor](https://developers.arcgis.com/rest/static-basemap-tiles/arcgis-outdoor-tile-get/) basemap style.
 
 For a full list of supported basemap styles, go to the [static basemap tiles service documentation](https://developers.arcgis.com/rest/static-basemap-tiles/).
 

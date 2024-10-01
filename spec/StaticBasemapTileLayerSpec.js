@@ -1,22 +1,17 @@
 /* eslint-env mocha */
 const accessToken = "1234";
-const basemapStyleBeta = '/beta/arcgis/outdoor';
+const basemapStyleBeta = 'beta/arcgis/outdoor';
 const basemapStyleBetaNoSlash = 'beta/arcgis/outdoor';
 const basemapStyle = '/arcgis/outdoor'
 const languageCode = 'fr';
 
-const imageryLabels = '/beta/arcgis/imagery/labels'
+const imageryLabels = 'beta/arcgis/imagery/labels'
 
 describe('StaticBasemapTileLayer', () => {
     it('should save the style enumeration from the constructor - basemapStyle', function () {
         const layer = L.esri.Static.staticBasemapTileLayer(basemapStyleBeta, {token:accessToken});
     
         expect(layer.options.style).to.equal(basemapStyleBeta);
-    });
-    it('should prepend an initial slash to the style enumeration if none is present - basemapStyleNoSlash', function () {
-      const layer = L.esri.Static.staticBasemapTileLayer(basemapStyleBetaNoSlash, {token:accessToken});
-    
-      expect(layer.options.style).to.equal('/'+basemapStyleBetaNoSlash);
     });
     it('should accept a language parameter - languageCode', function () {
       const layer = L.esri.Static.staticBasemapTileLayer(basemapStyleBeta, {token:accessToken, language:languageCode});
@@ -40,12 +35,12 @@ describe('StaticBasemapTileLayer', () => {
     it('should error if no style code is provided', function () {
       expect(function () {
         L.esri.Static.staticBasemapTileLayer('',{token:accessToken});
-      }).to.throw('A valid style enum is required for staticBasemapTileLayer (e.g. \'/beta/arcgis/streets\').');
+      }).to.throw('A valid style enum is required for staticBasemapTileLayer (e.g. \'beta/arcgis/streets\').');
     });
-    it('should error if the style code does not begin with \'/beta\'', function () {
+    it('should error if the style code does not begin with \'beta\'', function () {
       expect(function () {
         L.esri.Static.staticBasemapTileLayer(basemapStyle,{token:accessToken});
-      }).to.throw('The basemap styles service is currently in beta. All style enums must begin with \'/beta\' (e.g. \'/beta/arcgis/outdoor\').');
+      }).to.throw('The basemap styles service is currently in beta. All style enums must begin with \'beta\' (e.g. \'beta/arcgis/outdoor\').');
     })
     it('should error if no access token is provided', function () {
       expect(function () {

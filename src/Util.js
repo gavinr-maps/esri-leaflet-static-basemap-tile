@@ -1,7 +1,7 @@
 import { request } from 'esri-leaflet';
 
 // URL of the static basemap tiles service (currently in Beta)
-const baseUrl = 'https://static-map-tiles-api.arcgis.com/arcgis/rest/services/static-basemap-tiles-service';
+const baseUrl = 'https://static-map-tiles-api.arcgis.com/arcgis/rest/services/static-basemap-tiles-service/';
 
 /**
  * Utility to establish a URL for the static basemap tiles API
@@ -49,7 +49,7 @@ export async function fetchAttribution (style, accessToken) {
 export async function getSelf (accessToken) {
   if (!accessToken) throw new Error('An access token is required to access the static basemap tiles service.');
 
-  const selfUrl = baseUrl + '/beta/self';
+  const selfUrl = baseUrl + 'beta/self';
   return new Promise((resolve, reject) => {
     request(selfUrl, { token: accessToken }, (error, resp) => {
       if (error) reject(error);
