@@ -20,7 +20,6 @@
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-terser": "^0.3.0",
     "chai": "4.3.7",
-    "chai-as-promised": "^8.0.0",
     "chokidar-cli": "^3.0.0",
     "eslint": "^7.13.0",
     "eslint-config-semistandard": "^15.0.1",
