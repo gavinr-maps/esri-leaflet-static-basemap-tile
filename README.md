@@ -137,11 +137,11 @@ This endpoint returns a list of all supported basemap styles and language parame
 
 ## Issues
 
-Find a bug or want to request a new feature? Please let us know by submitting an [issue](https://github.com/Esri/esri-leaflet-static-basemap-tile/issues).
+Find a bug or want to request a new feature? Please let us know by submitting an issue.
 
-Please take a look at previous issues on [Esri Leaflet](https://github.com/Esri/esri-leaflet/issues?labels=FAQ&milestone=&page=1&state=closed) and Esri Leaflet [Static Basemap Tile](https://github.com/ArcGIS/esri-leaflet-static-basemap-tile/issues) that resolve common problems.
+Please take a look at previous issues on [Esri Leaflet](https://github.com/Esri/esri-leaflet/issues?labels=FAQ&milestone=&page=1&state=closed) that resolve common problems.
 
-You can also post questions on the [GIS Stack Exchange](http://gis.stackexchange.com/questions/ask?tags=esri-leaflet,leaflet) and the [Open Source Mapping community](https://community.esri.com/t5/open-source-mapping-libraries-ques/bd-p/open-source-mapping-libraries-questions) on Esri forums.
+You can also post questions on the [GIS Stack Exchange](http://gis.stackexchange.com/questions/ask?tags=esri-leaflet,leaflet), as well as the [Open Source Mapping community](https://community.esri.com/t5/open-source-mapping-libraries-ques/bd-p/open-source-mapping-libraries-questions) on Esri forums.
 
 ## Contributing
 
