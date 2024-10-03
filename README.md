@@ -95,7 +95,7 @@ For a full list of parameters, go to the Esri Leaflet [API reference]().
 
 For a full list of supported basemap styles, go to the [static basemap tiles service documentation](https://developers.arcgis.com/rest/static-basemap-tiles/).
 
-### [`L.esri.Static.Util.getSelf`]()
+### [`L.esri.Static.Util`]()
 
 `L.esri.Static.Util.getSelf(<String> token)`
 
@@ -137,7 +137,7 @@ This endpoint returns a list of all supported basemap styles and language parame
 
 ## Issues
 
-Find a bug or want to request a new feature? Please let us know by submitting an issue.
+Find a bug or want to request a new feature? Please let us know by submitting an [issue](https://github.com/Esri/esri-leaflet-static-basemap-tile/issues).
 
 Please take a look at previous issues on [Esri Leaflet](https://github.com/Esri/esri-leaflet/issues?labels=FAQ&milestone=&page=1&state=closed) that resolve common problems.
 
