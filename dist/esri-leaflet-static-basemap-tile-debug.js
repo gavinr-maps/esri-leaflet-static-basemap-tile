@@ -1,4 +1,4 @@
-/* esri-leaflet-static-basemap-tile - v1.0.0-beta.1 - Fri Oct 04 2024 14:08:58 GMT-0700 (Pacific Daylight Time)
+/* esri-leaflet-static-basemap-tile - v1.0.0-beta.1 - Fri Oct 04 2024 14:26:42 GMT-0700 (Pacific Daylight Time)
  * Copyright (c) 2024 Environmental Systems Research Institute, Inc.
  * Apache-2.0 */
 (function (global, factory) {
