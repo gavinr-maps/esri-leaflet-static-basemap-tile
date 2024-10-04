@@ -1,6 +1,11 @@
 # Esri Leaflet Static Basemap Tile Plugin
 
-...
+[![npm version][npm-img]][npm-url]
+[![apache licensed](https://img.shields.io/badge/license-Apache%202.0-orange.svg?style=flat-square)](https://raw.githubusercontent.com/Esri/esri-leaflet-static-basemap-tile/master/LICENSE)
+[![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/esri-leaflet-static-basemap-tile/badge)](https://www.jsdelivr.com/package/npm/esri-leaflet-static-basemap-tile)
+
+[npm-img]: https://img.shields.io/npm/v/esri-leaflet-static-basemap-tile.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/esri-leaflet-static-basemap-tile
 
 > A plugin for Esri Leaflet to visualize static basemap tiles 
 from the static basemap tile service.

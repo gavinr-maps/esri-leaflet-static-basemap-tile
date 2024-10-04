@@ -41,6 +41,7 @@ git commit -m "build $VERSION"
 git push git@github.com:Esri/esri-leaflet-static-basemap-tile.git gh-release
 
 # create a ZIP archive of the dist files
+# for Windows users it is recommended to create the archive manually instead
 zip -r $NAME-v$VERSION.zip dist
 
 # run gh-release to create the tag and push release to github
@@ -51,6 +52,6 @@ gh-release --assets $NAME-v$VERSION.zip
 npm publish
 
 # checkout master and delete release branch locally and on GitHub
-git checkout master
+git checkout main
 git branch -D gh-release
 git push git@github.com:Esri/esri-leaflet-static-basemap-tile.git :gh-release
