@@ -16,6 +16,9 @@ import { TileLayer, setOptions } from 'leaflet';
 import { getStaticBasemapTilesUrl, fetchAttribution } from './Util';
 import { Util } from 'esri-leaflet';
 
+// In the future, get this from Esri Leaflet Util:
+const POWERED_BY_ESRI_ATTRIBUTION_STRING = 'Powered by <a href="https://www.esri.com">Esri</a>';
+
 export var StaticBasemapTileLayer = TileLayer.extend({
   initialize: function (style, options) {
     if (options) {
@@ -78,10 +81,9 @@ export var StaticBasemapTileLayer = TileLayer.extend({
   },
   _setupAttribution: function () {
     if (!this._map) return;
-    Util.setEsriAttribution(this._map);
     fetchAttribution(this.options.style, this.options.token).then(attribution => {
       // Add attribution directly to map
-      this._map.attributionControl.addAttribution(attribution);
+      this._map.attributionControl.addAttribution(`${POWERED_BY_ESRI_ATTRIBUTION_STRING} | ${attribution}`);
     });
   },
   _removeAttribution: function () {
