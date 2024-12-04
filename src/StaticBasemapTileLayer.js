@@ -14,7 +14,7 @@
  */
 import { TileLayer, setOptions } from 'leaflet';
 import { getStaticBasemapTilesUrl, fetchAttribution } from './Util';
-import { Util } from 'esri-leaflet';
+//import { Util } from 'esri-leaflet';
 
 // In the future, get this from Esri Leaflet Util:
 const POWERED_BY_ESRI_ATTRIBUTION_STRING = 'Powered by <a href="https://www.esri.com">Esri</a>';
