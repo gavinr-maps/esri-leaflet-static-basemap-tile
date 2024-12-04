@@ -83,8 +83,15 @@ export var StaticBasemapTileLayer = TileLayer.extend({
     if (!this._map) return;
     fetchAttribution(this.options.style, this.options.token).then(attribution => {
       // Add attribution directly to map
-      this._map.attributionControl.addAttribution(`${POWERED_BY_ESRI_ATTRIBUTION_STRING} | ${attribution}`);
+      this.currentAttribution = `${POWERED_BY_ESRI_ATTRIBUTION_STRING} | ${attribution}`;
+      this._map.attributionControl.addAttribution(this.currentAttribution);
     });
+  },
+  _removeAttribution: function () {
+    if (this.currentAttribution) {
+      this._map.attributionControl.removeAttribution(this.currentAttribution);
+      this.currentAttribution = undefined;
+    }
   },
   _initPane: function () {
     if (this._map.getPane(this.options.pane)) return;
